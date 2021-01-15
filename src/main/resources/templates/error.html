@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinder Macotas</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mystyle.css">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="/">TINDER DE MASCOTA</a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/registro">Registro</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+        <div class="container">
+            <h1 class="masthead-heading text-uppercase" th:text="${codigo}"></h1>
+            <h2 class="masthead-subheading" th:text="${mensaje==null ? 'Intenta nuevamente' : mensaje}"></h2>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/">Volver</a>
+        </div>
+    </header>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-8 text-center text-white small">Copyright &copy; Your Website 2020</p>
+        </div>
+    </footer>
+</body>
+</html>
