@@ -6263,7 +6263,7 @@ button.bg-dark:focus {
 }
 
 .rounded {
-  border-radius: 0.25rem !important;
+  border-radius: 3rem !important;
 }
 
 .rounded-top {

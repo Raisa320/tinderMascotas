@@ -8,6 +8,7 @@ package edu.egg.tinder.servicios;
 import edu.egg.tinder.entidades.Foto;
 import edu.egg.tinder.errores.ErrorServicio;
 import edu.egg.tinder.repositorios.FotoRepositorio;
+import java.io.IOException;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,46 +21,48 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class FotoServicio {
-    
+
     @Autowired
     private FotoRepositorio fotoRepositorio;
-    
+
     @Transactional
-    public Foto guardar(MultipartFile archivo) throws ErrorServicio{
-        if (archivo!=null) {
-            try{
-                Foto foto =new Foto();
+    public Foto guardar(MultipartFile archivo) throws ErrorServicio {
+        if (archivo != null && !archivo.isEmpty()) {
+            try {
+                Foto foto = new Foto();
                 foto.setMime(archivo.getContentType());
                 foto.setNombre(archivo.getName());
                 foto.setContenido(archivo.getBytes());
 
                 return fotoRepositorio.save(foto);
-            }catch(Exception e){
+
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
         }
         return null;
     }
-    
+
     @Transactional
-    public Foto actualizar(String idFoto, MultipartFile archivo) throws ErrorServicio{
-        if (archivo!=null) {
-            try{
-                Foto foto =new Foto();
-                if (idFoto!=null) {
-                    Optional<Foto> respuesta=fotoRepositorio.findById(idFoto);
+    public Foto actualizar(String idFoto, MultipartFile archivo) throws ErrorServicio {
+        if (archivo != null) {
+            try {
+                Foto foto = new Foto();
+                if (idFoto != null) {
+                    Optional<Foto> respuesta = fotoRepositorio.findById(idFoto);
                     if (respuesta.isPresent()) {
-                        foto=respuesta.get();
+                        foto = respuesta.get();
                     }
                 }
-                foto.setMime(archivo.getContentType());
-                foto.setNombre(archivo.getName());
-                foto.setContenido(archivo.getBytes());
-
+                if (!archivo.isEmpty()) {
+                    foto.setMime(archivo.getContentType());
+                    foto.setNombre(archivo.getName());
+                    foto.setContenido(archivo.getBytes());
+                }
                 return fotoRepositorio.save(foto);
-            }catch(Exception e){
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
-            }  
+            }
         }
         return null;
     }

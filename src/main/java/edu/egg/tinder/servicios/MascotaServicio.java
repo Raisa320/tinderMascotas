@@ -9,10 +9,12 @@ import edu.egg.tinder.entidades.Foto;
 import edu.egg.tinder.entidades.Mascota;
 import edu.egg.tinder.entidades.Usuario;
 import edu.egg.tinder.enumeraciones.Sexo;
+import edu.egg.tinder.enumeraciones.Tipo;
 import edu.egg.tinder.errores.ErrorServicio;
 import edu.egg.tinder.repositorios.MascotaRepositorio;
 import edu.egg.tinder.repositorios.UsuarioRepositorio;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +37,13 @@ public class MascotaServicio {
     private FotoServicio fotoServicio;
     
     @Transactional
-    public void agregarMascota(MultipartFile archivo,String idUsuario, String nombre, Sexo sexo) throws  ErrorServicio{
+    public void agregarMascota(MultipartFile archivo,String idUsuario, String nombre, Sexo sexo,Tipo tipo) throws  ErrorServicio{
         Usuario usuario=usuarioRepositorio.findById(idUsuario).get();
-        validar(nombre,sexo);
+        validar(nombre,sexo,tipo);
         Mascota mascota=new Mascota();
         mascota.setNombre(nombre);
         mascota.setSexo(sexo);
+        mascota.setTipo(tipo);
         mascota.setAlta(new Date());
         mascota.setUsuario(usuario);
         
@@ -52,8 +55,8 @@ public class MascotaServicio {
     }
     
     @Transactional
-    public void modificar(MultipartFile archivo, String idUsuario, String idMascota, String nombre, Sexo sexo) throws ErrorServicio {
-        validar(nombre, sexo);
+    public void modificar(MultipartFile archivo, String idUsuario, String idMascota, String nombre, Sexo sexo,Tipo tipo) throws ErrorServicio {
+        validar(nombre, sexo,tipo);
         
         Optional<Mascota> respuesta = mascotaRepositorio.findById(idMascota);
         if (respuesta.isPresent()) {
@@ -61,7 +64,7 @@ public class MascotaServicio {
             if (mascota.getUsuario().getId().equals(idUsuario)) {
                 mascota.setNombre(nombre);
                 mascota.setSexo(sexo);
-                
+                mascota.setTipo(tipo);
                 String idFoto = null;
                 if (mascota.getFoto() != null) {
                     idFoto = mascota.getFoto().getId();
@@ -95,13 +98,29 @@ public class MascotaServicio {
         }
     }
     
+    public Mascota buscarPorId(String id) throws ErrorServicio{
+        Optional<Mascota> respuesta=mascotaRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            Mascota mascota = respuesta.get();
+            return mascota;
+        }else{
+            throw new ErrorServicio("No se encontro la mascota solicitada");
+        }
+    }
     
-    private void validar(String nombre, Sexo sexo) throws ErrorServicio{
+    private void validar(String nombre, Sexo sexo,Tipo tipo) throws ErrorServicio{
         if (nombre==null || nombre.isEmpty()) {
             throw new ErrorServicio("El nombre de la mascota no puede ser nulo");
         }
         if (sexo==null) {
             throw new ErrorServicio("Debe elegir un sexo");
         }
+        if (tipo==null) {
+            throw new ErrorServicio("Debe elegir una especie");
+        }
+    }
+    
+    public List<Mascota> buscarMascotasPorUsuario(String id){
+        return mascotaRepositorio.buscarMacotaPorUsuario(id);
     }
 }

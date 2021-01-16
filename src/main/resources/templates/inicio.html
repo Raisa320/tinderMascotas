@@ -26,7 +26,8 @@
         <div class="container">
             <div class="masthead-heading text-uppercase">Usuario Logueado</div>
             <div class="masthead-subheading" th:if="${session.usuariosession!=null}" th:text="${session.usuariosession.nombre + ' '+ session.usuariosession.apellido}"></div>
-            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" th:href="@{/usuario/editar-perfil(id=__${session.usuariosession.id}__}">¡Configura tu Perfil!</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" th:href="@{/usuario/editar-perfil?id=__${session.usuariosession.id}__}">¡Configura tu Perfil!</a>
+            <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" th:href="@{/mascota/mis-mascotas}">¡Mis mascotas!</a>
         </div>
     </header>
     <footer class="py-5 bg-dark">
