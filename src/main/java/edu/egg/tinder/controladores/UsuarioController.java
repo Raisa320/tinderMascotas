@@ -8,6 +8,7 @@ package edu.egg.tinder.controladores;
 import edu.egg.tinder.entidades.Usuario;
 import edu.egg.tinder.entidades.Zona;
 import edu.egg.tinder.errores.ErrorServicio;
+import edu.egg.tinder.repositorios.UsuarioRepositorio;
 import edu.egg.tinder.repositorios.ZonaRepositorio;
 import edu.egg.tinder.servicios.UsuarioServicio;
 import java.util.List;
@@ -19,7 +20,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -35,6 +38,9 @@ public class UsuarioController {
     
     @Autowired
     private ZonaRepositorio zonaRepositorio;
+    
+    @Autowired
+    private UsuarioRepositorio uRepo;
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/editar-perfil")
@@ -75,4 +81,13 @@ public class UsuarioController {
             return "perfil.html";
         }
     }
+    
+//    @RequestMapping(value = "/ubicacionesActivas", method = RequestMethod.GET)
+//    @ResponseBody
+//    public List<Usuario> nombreDuplicado(){
+//        for (Usuario user : uRepo.findAll()) {
+//            
+//        }
+//        return "";
+//    }
 }

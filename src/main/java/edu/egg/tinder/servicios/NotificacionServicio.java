@@ -28,7 +28,7 @@ public class NotificacionServicio {
 
     @Async
     public void enviar(String cuerpo, String titulo, String mail) /*throws MessagingException*/ {
-//        //MENSAJE UN PELIN MAS COMPLEJO
+//        //MENSAJE MAS COMPLEJO
 //        MimeMessage mensaje = mailSender.createMimeMessage();
 //        MimeMessageHelper helper = new MimeMessageHelper(mensaje, true);
 //        helper.setTo(mail);

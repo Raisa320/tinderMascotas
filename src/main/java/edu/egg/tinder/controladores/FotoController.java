@@ -10,8 +10,6 @@ import edu.egg.tinder.entidades.Usuario;
 import edu.egg.tinder.errores.ErrorServicio;
 import edu.egg.tinder.servicios.MascotaServicio;
 import edu.egg.tinder.servicios.UsuarioServicio;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

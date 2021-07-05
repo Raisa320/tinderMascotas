@@ -5,6 +5,7 @@
  */
 package edu.egg.tinder.controladores;
 
+import edu.egg.tinder.entidades.Usuario;
 import edu.egg.tinder.entidades.Zona;
 import edu.egg.tinder.errores.ErrorServicio;
 import edu.egg.tinder.repositorios.ZonaRepositorio;
@@ -12,6 +13,7 @@ import edu.egg.tinder.servicios.UsuarioServicio;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -43,7 +45,11 @@ public class PortalControlador {
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO_REGISTRADO')")
     @GetMapping("/inicio")
-    public String inicio(){
+    public String inicio(HttpSession session){
+//        System.out.println("------------------------------------------------------------------------"+session);
+//        session.invalidate();
+         //Usuario login = (Usuario) session.getAttribute("usuariosession");
+         //System.out.println("*****************************"+login.getApellido());
         return "inicio.html";
     }
     

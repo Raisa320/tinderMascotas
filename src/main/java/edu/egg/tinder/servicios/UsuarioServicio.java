@@ -9,6 +9,7 @@ import edu.egg.tinder.repositorios.UsuarioRepositorio;
 import edu.egg.tinder.repositorios.ZonaRepositorio;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -24,6 +25,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -161,14 +164,18 @@ public class UsuarioServicio implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
         Usuario usuario=usuarioRepositorio.buscarPorMail(mail);
+       
         if (usuario!=null) {
             
-            List<GrantedAuthority> permisos=new ArrayList<>();
+              List<GrantedAuthority> permisos=new ArrayList<>();
               GrantedAuthority p1=new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
               permisos.add(p1);
               
-              ServletRequestAttributes attr=(ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
+              ServletRequestAttributes attr=(ServletRequestAttributes)RequestContextHolder.currentRequestAttributes(); 
               HttpSession session=attr.getRequest().getSession(true);
+              for (Enumeration<String> e = attr.getRequest().getParameterNames(); e.hasMoreElements();)
+                System.out.println(e.nextElement());
+              System.out.println("-----------------"+(attr.getRequest().getParameterValues("username"))[0]);
               session.setAttribute("usuariosession", usuario);
 //            GrantedAuthority p1=new SimpleGrantedAuthority("MODULO_FOTOS");
 //            permisos.add(p1);
