@@ -53,6 +53,7 @@ public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter{
                         .and().logout()
                                 .logoutUrl("/logout")
                                 .logoutSuccessUrl("/login?logout")
-                                .permitAll().and().csrf().disable();
+                                .permitAll().and().csrf().disable().requiresChannel(channel -> channel
+                .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure());
     }
 }
