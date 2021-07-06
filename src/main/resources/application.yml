@@ -18,7 +18,7 @@ spring:
     password: 7af7a2d262a1991cecbe31b5daa4a263c93e3806d4f2aba06e2e72ac004543a2
     #driver-class-name: com.mysql.cj.jdbc.Driver 
   jpa:
-    show-sql: true
+    show-sql: true 
     hibernate:
       ddl-auto: update
     properties:
