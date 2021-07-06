@@ -13,9 +13,9 @@ spring:
     password: 741852rv
     
   datasource: 
-    url: jdbc:mysql://localhost:3306/tinder?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
+    url: jdbc:mysql://34.136.229.13:3306/tinderDB?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
-    password: root
+    password: tindermascotas123
     driver-class-name: com.mysql.cj.jdbc.Driver 
   jpa:
     show-sql: true
@@ -30,3 +30,4 @@ server:
   error:
     whitelabel:
       enabled: false
+  forward-headers-strategy: NATIVE
