@@ -13,17 +13,17 @@ spring:
     password: 741852rv
     
   datasource: 
-    url: jdbc:mysql://localhost:3306/tinder?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver 
+    url: postgres://ysqjpzwehgsqno:7af7a2d262a1991cecbe31b5daa4a263c93e3806d4f2aba06e2e72ac004543a2@ec2-34-233-114-40.compute-1.amazonaws.com:5432/d7lvvc75ns5t6c
+    username: ysqjpzwehgsqno
+    password: 7af7a2d262a1991cecbe31b5daa4a263c93e3806d4f2aba06e2e72ac004543a2
+    #driver-class-name: com.mysql.cj.jdbc.Driver 
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect      
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect      
   thymeleaf:
     cache: false 
 server:
