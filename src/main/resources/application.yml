@@ -13,7 +13,7 @@ spring:
     password: 741852rv
     
   datasource: 
-    url: jdbc:mysql://34.136.229.13:3306/tinderDB?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
+    url: jdbc:mysql://35.192.29.201:3306/tinderDB?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
     password: tindermascotas123
     driver-class-name: com.mysql.cj.jdbc.Driver 
