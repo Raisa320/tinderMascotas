@@ -1,8 +1,0 @@
-runtime: java8
-instance_class: F2
-env: flex
-runtime_config:
-    jdk: openjdk8
-handlers:
-    url: /.*
-    script: this field is required, but ignored
