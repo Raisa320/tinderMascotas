@@ -11,6 +11,7 @@ import edu.egg.tinder.errores.ErrorServicio;
 import edu.egg.tinder.repositorios.UsuarioRepositorio;
 import edu.egg.tinder.repositorios.ZonaRepositorio;
 import edu.egg.tinder.servicios.UsuarioServicio;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,12 @@ public class UsuarioController {
         try {
             Usuario usuario=usuarioServicio.buscarPorId(id);
             model.addAttribute("perfil",usuario);
+            throw new  ErrorServicio(id);
         } catch (ErrorServicio e) {
             model.addAttribute("error",e.getMessage());
+            Calendar tiempo=Calendar.getInstance();
+            tiempo.add(Calendar.MINUTE, 15);
+            System.out.println("tambien aqui"+tiempo);
         }
         return "perfil.html";
     }
