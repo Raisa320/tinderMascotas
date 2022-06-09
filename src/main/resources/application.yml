@@ -10,7 +10,7 @@ spring:
                     required: true
                     enable: true
     username: vr3148910@gmail.com 
-    password: 741852rv
+    password: 
     
   datasource: 
     url: jdbc:mysql://localhost:3306/tinder?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
